@@ -35,9 +35,9 @@ export class ListaService {
     return await this.listaRepository.manager.save(itemLista);
   }
 
-  public async removerItemLista(id:string): Promise<Lista> {
+  public async removerItemLista(id:string): Promise<void> {
     const itemLista = await this.listaRepository.findOne(id);
 
-    return await this.listaRepository.manager.remove(itemLista);
+    await this.listaRepository.manager.remove(itemLista);
   }
 }

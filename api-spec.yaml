@@ -133,7 +133,7 @@ paths:
         200:
           description: "Ordem de compra inserida"
           schema:
-            $ref: "#/definitions/ListaCriada"
+            $ref: "#/definitions/ListaDeleteSuccess"
         400:
           description: "Bad Request"
           schema:
@@ -183,6 +183,15 @@ definitions:
       quantidade:
         type: integer
         example: 1
+  ListaDeleteSuccess:
+    type: object
+    required:
+      - message
+    properties:
+      message:
+        type: string
+        example: "Mensagem de erro generica"
+        description: "Registro removido com sucesso!"
   Error:
     type: object
     required:

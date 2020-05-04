@@ -44,8 +44,8 @@ export class ListaController {
   async deleteItemLista(req: Request, res: Response): Promise<void> {
     try {
       const { id } = req.body;
-      const response = await this.listaService.removerItemLista(id);
-      res.status(200).json(response);
+      await this.listaService.removerItemLista(id);
+      res.status(200).json({ message: "Registro removido com sucesso!"});
     } catch (error) {
       res.status(500).json({ message: error.message });
     }
