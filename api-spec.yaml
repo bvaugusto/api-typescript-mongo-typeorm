@@ -1,0 +1,116 @@
+swagger: "2.0"
+info:
+  title: "API Lista"
+  version: "1.0.0"
+  description: "Este serviço controla as operacões da lista de produtos"
+basePath: "/lista/"
+tags:
+  - name: "lista"
+    description: "Lista de produtos."
+schemes:
+  - "http"
+  - "https"
+paths:
+  /v1/listas:
+    get:
+      tags:
+        - "listas"
+      summary: "Lista"
+      operationId: "getLista"
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: "Lista de compras"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/OrdemCompra"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/Error"
+        401:
+          description: "Not Authorized"
+        403:
+          description: "Forbidden"
+          schema:
+            $ref: "#/definitions/Error"
+        422:
+          description: "Unprocessable Entity"
+          schema:
+            $ref: "#/definitions/Error"
+        500:
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/Error"
+    post:
+      tags:
+        - "listas"
+      summary: "Cria uma ordem de compra"
+      operationId: "postLista"
+      produces:
+        - "application/json"
+      parameters:
+        - in: body
+          name: match
+          required: true
+          schema:
+            $ref: "#/definitions/OrdemCompra"
+      responses:
+        200:
+          description: "Ordem de compra inserida"
+          schema:
+            $ref: "#/definitions/OperacaoCriada"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/Error"
+        401:
+          description: "Not Authorized"
+        403:
+          description: "Forbidden"
+          schema:
+            $ref: "#/definitions/Error"
+        422:
+          description: "Unprocessable Entity"
+          schema:
+            $ref: "#/definitions/Error"
+        500:
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/Error"
+definitions:
+  OrdemCompra:
+    type: object
+    properties:
+      id:
+        type: string
+        example: "aasd652316sadf651"
+      descricao:
+        type: string
+        example: "Pão de forma"
+      quantidade:
+        type: integer
+        example: 1
+  OperacaoCriada:
+    type: object
+    properties:
+      id:
+        type: string
+        example: "aasd652316sadf651"
+      descricao:
+        type: string
+        example: "Pão de forma"
+      quantidade:
+        type: integer
+        example: 1
+  Error:
+    type: object
+    required:
+      - message
+    properties:
+      message:
+        type: string
+        example: "Mensagem de erro generica"
+        description: "Error message of the given request"

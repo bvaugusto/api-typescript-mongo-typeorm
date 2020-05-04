@@ -1,0 +1,28 @@
+{
+  "type": "mongodb",
+  "host": "localhost",
+  "port": 27017,
+  "username": "",
+  "password": "",
+  "database": "poc1",
+  "authSource": "admin",
+  "logging": true,
+  "synchronize": true,
+  "cache": false,
+  "useNewUrlParser": true,
+  "useUnifiedTopology": true,
+  "useCreateIndex": true,
+  "useFindAndModify": false,
+  "autoLoadEntities": true,
+  "entities": [
+    "build/src/models/*{.ts,.js}"
+  ],
+  "migrations": [
+    "build/migrations/*.js"
+  ],
+  "migrationsTableName": "migrations",
+  "cli": {
+    "entitiesDir": "src/models",
+    "migrationsDir": "migrations"
+  }
+}

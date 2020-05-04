@@ -1,0 +1,10 @@
+.idea/
+.vscode/
+build/
+node_modules/
+coverage
+new-env-vars
+.env
+config
+ormconfig.json
+yarn-error.log
