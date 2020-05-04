@@ -32,3 +32,9 @@ $ yarn migration:revert
 ```sh
 $ typeorm migration:create -n NameMigration
 ```
+
+----
+## Swagger
+
+### Api Gateway 
+>http://localhost:8000/rarolabs/api-docs/
