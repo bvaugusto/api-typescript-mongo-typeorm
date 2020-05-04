@@ -1,15 +1,13 @@
 import { Service, Inject } from "typedi";
-import { Repository, EntityManager } from "typeorm";
+import { Repository } from "typeorm";
 import { Lista } from "../models/lista";
 import { ITLista } from "../../src/models/interfaces/lista.interfaces";
 
 @Service("listaService")
 export class ListaService {
   private listaRepository: Repository<Lista>;
-  private entityManager: EntityManager;
 
-  constructor(@Inject("entityManager") entityManager: EntityManager, @Inject("listaRepository") listaRepository: Repository<Lista>) {
-    this.entityManager = entityManager;
+  constructor(@Inject("listaRepository") listaRepository: Repository<Lista>) {
     this.listaRepository = listaRepository;
   }
 
@@ -25,5 +23,21 @@ export class ListaService {
     lista.quantidade = quantidade;
 
     return await this.listaRepository.manager.save(lista);
+  }
+
+  public async atualizarLista(id:string, params: ITLista): Promise<Lista> {
+    const { descricao, quantidade } = params;
+    const itemLista = await this.listaRepository.findOne(id);
+
+    itemLista.descricao = descricao;
+    itemLista.quantidade = quantidade;
+
+    return await this.listaRepository.manager.save(itemLista);
+  }
+
+  public async removerItemLista(id:string): Promise<Lista> {
+    const itemLista = await this.listaRepository.findOne(id);
+
+    return await this.listaRepository.manager.remove(itemLista);
   }
 }

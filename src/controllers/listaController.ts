@@ -29,4 +29,25 @@ export class ListaController {
       res.status(500).json({ message: error.message });
     }
   }
+
+  async updateLista(req: Request, res: Response): Promise<void> {
+    try {
+      const { id } = req.body;
+      const params: ITLista = { ...req.body };
+      const response = await this.listaService.atualizarLista(id, params);
+      res.status(200).json(response);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  }
+
+  async deleteItemLista(req: Request, res: Response): Promise<void> {
+    try {
+      const { id } = req.body;
+      const response = await this.listaService.removerItemLista(id);
+      res.status(200).json(response);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  }
 }

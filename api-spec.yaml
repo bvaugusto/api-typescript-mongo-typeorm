@@ -25,7 +25,7 @@ paths:
           schema:
             type: array
             items:
-              $ref: "#/definitions/OrdemCompra"
+              $ref: "#/definitions/Lista"
         400:
           description: "Bad Request"
           schema:
@@ -53,15 +53,87 @@ paths:
         - "application/json"
       parameters:
         - in: body
-          name: match
+          name: lista
           required: true
           schema:
-            $ref: "#/definitions/OrdemCompra"
+            $ref: "#/definitions/Lista"
       responses:
         200:
           description: "Ordem de compra inserida"
           schema:
-            $ref: "#/definitions/OperacaoCriada"
+            $ref: "#/definitions/ListaCriada"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/Error"
+        401:
+          description: "Not Authorized"
+        403:
+          description: "Forbidden"
+          schema:
+            $ref: "#/definitions/Error"
+        422:
+          description: "Unprocessable Entity"
+          schema:
+            $ref: "#/definitions/Error"
+        500:
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/Error"
+    put:
+      tags:
+        - "listas"
+      summary: "Cria uma ordem de compra"
+      operationId: "updateLista"
+      produces:
+        - "application/json"
+      parameters:
+        - in: body
+          name: lista
+          required: true
+          schema:
+            $ref: "#/definitions/Lista"
+      responses:
+        200:
+          description: "Ordem de compra inserida"
+          schema:
+            $ref: "#/definitions/ListaCriada"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/Error"
+        401:
+          description: "Not Authorized"
+        403:
+          description: "Forbidden"
+          schema:
+            $ref: "#/definitions/Error"
+        422:
+          description: "Unprocessable Entity"
+          schema:
+            $ref: "#/definitions/Error"
+        500:
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/Error"
+    delete:
+      tags:
+        - "listas"
+      summary: "Cria uma ordem de compra"
+      operationId: "deleteItemLista"
+      produces:
+        - "application/json"
+      parameters:
+        - in: body
+          name: lista
+          required: true
+          schema:
+            $ref: "#/definitions/ListaDelete"
+      responses:
+        200:
+          description: "Ordem de compra inserida"
+          schema:
+            $ref: "#/definitions/ListaCriada"
         400:
           description: "Bad Request"
           schema:
@@ -81,7 +153,7 @@ paths:
           schema:
             $ref: "#/definitions/Error"
 definitions:
-  OrdemCompra:
+  Lista:
     type: object
     properties:
       id:
@@ -93,7 +165,13 @@ definitions:
       quantidade:
         type: integer
         example: 1
-  OperacaoCriada:
+  ListaDelete:
+    type: object
+    properties:
+      id:
+        type: string
+        example: "aasd652316sadf651"
+  ListaCriada:
     type: object
     properties:
       id:
