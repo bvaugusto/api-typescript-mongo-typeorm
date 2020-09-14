@@ -20,7 +20,7 @@ try {
       app.use(cors());
 
       const swaggerDocument = YAML.load("./api-spec.yaml");
-      app.use("/rarolabs/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+      app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
       app.use(bodyParser.json({ limit: "5mb" }));
 
